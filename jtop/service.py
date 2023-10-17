@@ -579,6 +579,7 @@ class JtopServer(Process):
         data['engines'] = self.engine.get_status()
         # -- Temperature --
         data['temperature'] = self.temperature.get_status()
+        #data['temperature'] = "Unavailable"
         # -- Power --
         data['power'] = self.power.get_status()
         # -- FAN --

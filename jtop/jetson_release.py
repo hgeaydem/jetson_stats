@@ -48,12 +48,12 @@ def main():
     del jetson['Serial Number']
     # Print headline
     if jetson['Jetpack']:
-        print("Model: {model} - Jetpack {jetpack} [L4T {L4T}]".format(model=bcolors.bold(jetson['Model']),
+        print("Model: {model} - Jetpack {jetpack} [RHEL {L4T}]".format(model=bcolors.bold(jetson['Model']),
               jetpack=bcolors.bold(jetson['Jetpack']), L4T=bcolors.bold(jetson['L4T'])))
     else:
         print(bcolors.fail(bcolors.bold("Jetpack missing!")))
         print(" - Model: {model}".format(model=bcolors.bold(jetson['Model'])))
-        print(" - L4T: {L4T}".format(L4T=bcolors.bold(jetson['L4T'])))
+        print(" - RHEL: {L4T}".format(L4T=bcolors.bold(jetson['L4T'])))
     del jetson['Model']
     del jetson['Jetpack']
     del jetson['L4T']

@@ -44,6 +44,7 @@ class ProcessTable(object):
         self.type_reverse = True
 
     def draw(self, pos_y, pos_x, width, height, key, mouse):
+        nprocess = 0
         processes = self.jetson.processes
         # Plot low bar background line
         try:

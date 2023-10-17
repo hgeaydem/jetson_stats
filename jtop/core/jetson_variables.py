@@ -154,7 +154,7 @@ MODULE_NAME_TABLE = {
 JTOP_VARIABLE_FILE = 'jtop_env.sh'
 DTSFILENAME_RE = re.compile(r'(.*)-p')
 SOC_RE = re.compile(r'[0-9]+')
-DPKG_L4T_CORE_RE = re.compile(r'^nvidia-l4t-core.*install$')
+DPKG_L4T_CORE_RE = re.compile(r'^nvidia-jetpack-.*')
 # Number 7 is for Jetson TX2
 I2C_EEPROM_BUS = [0, 1, 2, 7]
 RAW_FILES = ['/etc/nv_tegra_release',
@@ -193,7 +193,7 @@ def get_raw_output():
 
 
 def check_dpkg_nvidia_l4t_core():
-    dpkg = Command(['dpkg', '--get-selections'])
+    dpkg = Command(['rpm', '-qa'])
     lines = dpkg()
     for line in lines:
         if re.match(DPKG_L4T_CORE_RE, line):
@@ -218,6 +218,10 @@ def get_nvidia_l4t():
         # Ectract SOC - DO NOT USE THIS LINE! CONTAINS ALWAYS WRONG OUTPUT
         # number = re.search(SOC_RE, nv_tegra_release[3].lstrip("BOARD: ")).group()
         # os_variables['SOC'] = "tegra{number}".format(number=number)
+    elif os.path.isfile('/etc/redhat-release'):
+        rhel_release = cat("/etc/redhat-release").split(" ")
+        rhel_version = rhel_release[5]
+        return rhel_version
     elif check_dpkg_nvidia_l4t_core():
         dpkg = Command(['dpkg-query', '--showformat=\'${Version}\'', '--show', 'nvidia-l4t-core'])
         l4t = dpkg()[0]

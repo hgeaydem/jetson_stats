@@ -226,10 +226,10 @@ class JTOPGUI:
         # Write first line
         head_string = "Model: {model} - ".format(model=model) if model else ""
         if jetpack:
-            head_string += "Jetpack {jetpack} [L4T {L4T}]".format(jetpack=jetpack, L4T=L4T)
+            head_string += "Jetpack {jetpack} [RHEL {L4T}]".format(jetpack=jetpack, L4T=L4T)
             self.stdscr.addstr(idx, 0, head_string, curses.A_BOLD)
         else:
-            head_string += "[L4T {L4T}]".format(L4T=L4T)
+            head_string += "[RHEL {L4T}]".format(L4T=L4T)
             # Print only the model
             self.stdscr.addstr(idx, 0, head_string, curses.A_BOLD)
             # Print error message

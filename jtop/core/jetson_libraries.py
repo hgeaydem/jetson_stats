@@ -33,13 +33,13 @@ CUDA_NVCC_RE = re.compile(r'V([0-9]+.[0-9]+.[0-9]+)')
 
 def get_cuda():
     cuda_version = ''
-    if os.path.isfile("/usr/local/cuda/version.txt"):
-        version = cat("/usr/local/cuda/version.txt")
+    if os.path.isfile("/usr/cuda/version.txt"):
+        version = cat("/usr/cuda/version.txt")
         match = re.search(CUDA_FILE_RE, version)
         if match:
             cuda_version = match.group(1)
-    elif os.path.isfile("/usr/local/cuda/bin/nvcc"):
-        cmd = Command(['/usr/local/cuda/bin/nvcc', '--version'])
+    elif os.path.isfile("/usr/cuda/bin/nvdisasm"):
+        cmd = Command(['/usr/cuda/bin/nvdisasm', '--version'])
         try:
             lines = cmd()
             for line in lines:
